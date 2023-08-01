@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
+    "start": "webpack-dev-server --open --mode development",
+    "build": "webpack -c webpack.config.js",
     "lint": "prettier --check . && eslint . --ext .ts",
     "lint:fix": "prettier --write . && eslint . --fix --ext .ts",
-    "test": "jest",
+    "test": "jest --coverage",
     "prepare": "husky install"
   },
   "keywords": [],
@@ -29,7 +31,10 @@
     "jest-environment-jsdom": "^29.6.2",
     "lint-staged": "^13.2.3",
     "prettier": "^3.0.0",
-    "typescript": "5.0"
+    "typescript": "5.0",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   },
   "lint-staged": {
     "*.ts": "eslint --cache --fix",

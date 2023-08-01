@@ -19,6 +19,7 @@ module.exports = {
     "plugins": [
         "@typescript-eslint", "jest", "import"
     ],
+    "root":true,
     "rules": {
         
         "@typescript-eslint/no-base-to-string": "off",
