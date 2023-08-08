@@ -52,7 +52,7 @@ module.exports = {
   devServer: {
     compress: false,
     open: true,
-    port: 3000,
+    port: 1800,
     hot: true,
   },
 };
