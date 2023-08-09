@@ -1,6 +1,6 @@
 import { getCity } from "./getCity";
 
-export const sleep = (x:number) =>
+export const sleep = (x: number) =>
   new Promise((resolve) => {
     setTimeout(resolve, x);
   });
@@ -9,7 +9,7 @@ describe("getCity", () => {
   it("is a function", () => {
     expect(getCity).toBeInstanceOf(Function);
   });
-/* });
+  /* });
 const mockObject = {
   ip: "2001:448a:5061:38bf:152a:be0b:af45:8a42",
   organization_name: "PT Telekomunikasi Indonesia",
