@@ -25,7 +25,7 @@ export class MainWeather extends HeaderWeather {
   }
 
   template(tpl: string, data: Record<string, any>): string {
-    console.log(data);
+    // console.log(data);
     const tplResult = tpl
       .replace(/{{for (\w+)}}(.+){{endfor}}/g, (match, key, tmpl) => {
         let res = "";
@@ -82,7 +82,7 @@ export class MainWeather extends HeaderWeather {
     const weather = await this.obtainWeather(jsonCity.city);
     const { lon } = weather.coord;
     const { lat } = weather.coord;
-    this.map = `<image src = https://static-maps.yandex.ru/1.x/?ll=${lon},${lat}&size=450,450&z=12&l=map`;
+    this.map = `<img src = https://static-maps.yandex.ru/1.x/?ll=${lon},${lat}&size=450,450&z=12&l=map`;
     console.log(lon);
     console.log(jsonCity.city);
 
@@ -141,7 +141,7 @@ export class MainWeather extends HeaderWeather {
       this.map = `<image src = https://static-maps.yandex.ru/1.x/?ll=${lon},${lat}&size=450,450&z=12&l=map`;
       this.setState({ MAP: this.map });
       // this.history = new Set as unknown as unknown[];
-      console.log(this.state.name);
+      // console.log(this.state.name);
       this.history.push(this.state.name);
       console.log(this.history);
       this.putInLocalStorage(this.history as string[]);

@@ -22,7 +22,7 @@ module.exports = {
     ],
     "root":true,
     "rules": {
-        
+        "prefer-const":"off",
         "@typescript-eslint/no-base-to-string": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-throw-literal": "off",
