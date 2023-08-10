@@ -1,6 +1,5 @@
-import { getCity } from "./getCity";
-import { obtainWeather } from "./obtainWeather";
-const city: string = await getCity();
-console.log(city);
-const weather = await obtainWeather(city);
-console.log(weather);
+import { HeaderWeather } from "./createHeader";
+import { MainWeather } from "./createMain";
+import "./style.css";
+new HeaderWeather(document.querySelector("#header-container") as HTMLElement);
+new MainWeather(document.querySelector("#main-container") as HTMLElement);

@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+#header-container {
+  width: 100%;
+}
+.local-container {
+  font-size: 28px;
+  display: flex;
+  background-color: antiquewhite;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 300px;
+}
