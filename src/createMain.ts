@@ -57,8 +57,8 @@ export class MainWeather extends HeaderWeather {
             <button> Push</button>
         </div>
          
-        <p> City : {{NAME}}  Temperature :   {{TEMP}}°C</p>
-        <img src = "https://openweathermap.org/img/wn/{{ICON}}@2x.png"/>
+        <p class = "main-block"> City : {{NAME}}  Temperature :   {{TEMP}}°C</p>
+        <img class = "main-img" src = "https://openweathermap.org/img/wn/{{ICON}}@2x.png"/>
         
         <div class = "history">
         {{for items}}<button>{{NAME}}</button>{{endfor}}
@@ -117,8 +117,6 @@ export class MainWeather extends HeaderWeather {
     return json;
   }
   putInLocalStorage = (set: string[]) => {
-    
-
     if (set.length > 10) {
       set.shift();
     }
