@@ -26,11 +26,22 @@ export class Component<State = Record<string, any>> {
     this.el.innerHTML = this.render();
     this.subscribeToEvents();
   }
-  subscribeToEvents() {
+  /* subscribeToEvents() {
     Object.entries(this.events).forEach(([key, value]) => {
       const eName = key.split("@").toString();
       const selector = key.split("@").splice(1, 1).toString();
       this.el.querySelector(selector)?.addEventListener(eName, value);
+    });
+  } */
+
+  subscribeToEvents(): void {
+    Object.keys(this.events).forEach((key: string) => {
+      const [eventName, selector] = key.split("@");
+      [...Array.from(this.el.querySelectorAll(`${selector}`))].forEach(
+        (elem) => {
+          elem.addEventListener(`${eventName}`, this.events[key]);
+        },
+      );
     });
   }
 }

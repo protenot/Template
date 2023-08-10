@@ -30,6 +30,10 @@ export class MainWeather extends HeaderWeather {
       .replace(/{{for (\w+)}}(.+){{endfor}}/g, (match, key, tmpl) => {
         let res = "";
         if (this.history) {
+          this.history = this.history.reduce((result: string[], item) => {
+            return result.includes(item) ? result : [...result, item];
+          }, []);
+
           this.history.forEach((el) => {
             res = `<span>${this.template(tmpl, { name: el })}</span>${res}`;
           });
@@ -55,13 +59,13 @@ export class MainWeather extends HeaderWeather {
          
         <p> City : {{NAME}}  Temperature :   {{TEMP}}°C</p>
         <img src = "https://openweathermap.org/img/wn/{{ICON}}@2x.png"/>
+        
+        <div class = "history">
+        {{for items}}<button>{{NAME}}</button>{{endfor}}
+        </div>
         <div class = "map-container">    
         {{MAP}}
         </div>
-        <div class = "history">
-        {{for items}}{{NAME}}{{endfor}}
-        </div>
-       
 
             `,
       this.state,
@@ -84,9 +88,16 @@ export class MainWeather extends HeaderWeather {
 
     this.setState(weather);
     this.setState({ MAP: this.map });
+
     this.history = await this.getFromLocalStorage();
-    console.log(this.history);
-    return jsonCity.city;
+    if (this.history) {
+      console.log(this.history);
+      return jsonCity.city;
+    } else {
+      this.history = [jsonCity.city];
+
+      return jsonCity.city;
+    }
     /* } else {
         throw new Error("https://get.geojs.io/v1/ip/geo.json OUT OF REACH");
       }
@@ -106,6 +117,8 @@ export class MainWeather extends HeaderWeather {
     return json;
   }
   putInLocalStorage = (set: string[]) => {
+    
+
     if (set.length > 10) {
       set.shift();
     }
@@ -116,5 +129,30 @@ export class MainWeather extends HeaderWeather {
   getFromLocalStorage = async () => {
     const history = localStorage.getItem("history") as string;
     return JSON.parse(history);
+  };
+
+  clickButton = async (event: Event) => {
+    const eventTarget = event.target as HTMLElement;
+    const weather = await this.obtainWeather(
+      this.el.querySelector("input")?.value || eventTarget.innerHTML,
+    );
+    if (weather) {
+      this.setState(weather);
+      const { lon } = weather.coord;
+      const { lat } = weather.coord;
+      this.map = `<image src = https://static-maps.yandex.ru/1.x/?ll=${lon},${lat}&size=450,450&z=12&l=map`;
+      this.setState({ MAP: this.map });
+      // this.history = new Set as unknown as unknown[];
+      console.log(this.state.name);
+      this.history.push(this.state.name);
+      console.log(this.history);
+      this.putInLocalStorage(this.history as string[]);
+      this.el.innerHTML = this.render();
+      this.subscribeToEvents();
+    }
+  };
+  events = {
+    "click@button": this.clickButton,
+    "click@.history": this.clickButton,
   };
 }
