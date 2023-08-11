@@ -1,4 +1,3 @@
-//import { Component } from "./component";
 import { HeaderWeather } from "./createHeader";
 
 export class MainWeather extends HeaderWeather {
@@ -73,11 +72,8 @@ export class MainWeather extends HeaderWeather {
   }
 
   getCity = async () => {
-    // try {
     const responseCity = await fetch("https://get.geojs.io/v1/ip/geo.json");
 
-    //console.log(responseCity);
-    // if (responseCity.ok) {
     const jsonCity = await responseCity.json();
     const weather = await this.obtainWeather(jsonCity.city);
     const { lon } = weather.coord;
@@ -98,12 +94,6 @@ export class MainWeather extends HeaderWeather {
 
       return jsonCity.city;
     }
-    /* } else {
-        throw new Error("https://get.geojs.io/v1/ip/geo.json OUT OF REACH");
-      }
-    } catch (error) {
-      console.log(error);
-    } */
   };
 
   async obtainWeather(cityName: string): Promise<any> {

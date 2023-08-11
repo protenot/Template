@@ -13,23 +13,6 @@ describe("MainWeather", () => {
 
   const originalFetch = window.fetch;
 
-  /*  getWeather(el);
-
-    
-    button = el.querySelector("button");
-    newButton = el.querySelector(".list");
-   
-    form = el.querySelector("form");
-    weatherBox = el.querySelector("#weather-box");
-    mapContainer = el.querySelector("#map-container");
-    allMaps = el.querySelectorAll(".map");
-    city = el.querySelector(".city");
-    list = el.querySelector(".list");
-    mapFooter = el.querySelector(".map");
-    lon = el.querySelector("lon");
-    lat = el.querySelector("lat");
-    arrayNode = el.querySelector("arrayNode");
- */
   window.fetch = jest.fn().mockResolvedValue({
     json: () =>
       Promise.resolve({

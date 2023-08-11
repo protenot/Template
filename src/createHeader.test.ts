@@ -7,8 +7,6 @@ const sleep = (x: number) =>
 describe("HeaderWeather", () => {
   let el: HTMLElement;
 
-  // await sleep(100)
-
   const originalFetch = window.fetch;
 
   window.fetch = jest.fn().mockResolvedValue({

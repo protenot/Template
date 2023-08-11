@@ -48,23 +48,16 @@ export class HeaderWeather extends Component {
   }
 
   getCity = async () => {
-    // try {
     const responseCity = await fetch("https://get.geojs.io/v1/ip/geo.json");
 
     //console.log(responseCity);
-    // if (responseCity.ok) {
+
     const jsonCity = await responseCity.json();
     const weather = await this.obtainWeather(jsonCity.city);
     console.log(jsonCity.city);
 
     this.setState(weather);
     return jsonCity.city;
-    /* } else {
-        throw new Error("https://get.geojs.io/v1/ip/geo.json OUT OF REACH");
-      }
-    } catch (error) {
-      console.log(error);
-    } */
   };
   async obtainWeather(cityName: string): Promise<any> {
     const API_KEY = "c768bc4e962d2a69c28ba404045dc96c";
