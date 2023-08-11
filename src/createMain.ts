@@ -60,7 +60,7 @@ export class MainWeather extends HeaderWeather {
         <img class = "main-img" src = "https://openweathermap.org/img/wn/{{ICON}}@2x.png"/>
         
         <div class = "history">
-        {{for items}}<button>{{NAME}}</button>{{endfor}}
+        {{for items}}<button class = "btn">{{NAME}}</button>{{endfor}}
         </div>
         <div class = "map-container">    
         {{MAP}}
